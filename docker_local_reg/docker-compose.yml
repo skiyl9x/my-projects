@@ -1,0 +1,12 @@
+registry:
+  restart: always
+  image: registry:2
+  ports:
+    - 5000:5000
+  environment:
+    REGISTRY_HTTP_TLS_CERTIFICATE: /certs/certificate.crt
+    REGISTRY_HTTP_TLS_KEY: /certs/private.key
+  volumes:
+    - /home/skiyl9x/docker_registry/data:/var/lib/registry
+    - /home/skiyl9x/docker_registry/certs:/certs
+    - /home/skiyl9x/docker_registry/auth:/auth

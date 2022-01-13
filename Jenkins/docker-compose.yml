@@ -1,0 +1,21 @@
+version: '3'
+services:
+  jenkins:
+    build:
+      context: ./
+      args:
+        HOST_UID: ${HOST_UID}
+        HOST_GID: ${HOST_GID}
+    restart: unless-stopped
+    ports:
+      - ${HOST_WWW}:8080
+      - ${HOST_OTHER}:50000
+    volumes:
+      - ${HOST_JENKINS_DATA}:/var/jenkins_home
+      - ${HOST_DOCKER}:/var/run/docker.sock
+  
+
+volumes:
+  jenkins-data:
+
+
