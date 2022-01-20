@@ -1,11 +1,7 @@
 version: '3'
 services:
   jenkins:
-    build:
-      context: ./
-      args:
-        HOST_UID: ${HOST_UID}
-        HOST_GID: ${HOST_GID}
+    image: my-registry.pp.ua:8483/jenkins:v1
     restart: unless-stopped
     ports:
       - ${HOST_WWW}:8080
@@ -13,6 +9,7 @@ services:
     volumes:
       - ${HOST_JENKINS_DATA}:/var/jenkins_home
       - ${HOST_DOCKER}:/var/run/docker.sock
+      - ${MINICUBE_CERT}:/home/jenkins/.minikube/
   
 
 volumes:
