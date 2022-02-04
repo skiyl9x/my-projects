@@ -2,6 +2,9 @@ FROM jenkins/jenkins
 
 ARG HOST_UID=1000
 ARG HOST_GID=998
+ARG HELM_URL="https://get.helm.sh/helm-v3.8.0-rc.2-linux-amd64.tar.gz"
+ENV KUBECONFIG "/home/jenkins/.kube/config"
+
 
 USER root
 RUN apt-get update && \ 
@@ -24,6 +27,7 @@ curl -L "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable
 chmod +x /usr/local/bin/kubectl
 COPY config /home/jenkins/.kube/
 RUN chown -R jenkins:jenkins /home/jenkins/.kube/
-ENV KUBECONFIG "/home/jenkins/.kube/config"
+
+RUN curl $HELM_URL -o helm.tar.gz && tar zxvf helm.tar.gz && mv linux-amd64/helm /usr/local/bin/ && rm -rf linux-amd64/ helm.tar.gz
 USER jenkins
 

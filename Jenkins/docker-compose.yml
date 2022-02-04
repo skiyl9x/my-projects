@@ -1,7 +1,7 @@
 version: '3'
 services:
   jenkins:
-    image: my-registry.pp.ua:8483/jenkins:v4
+    image: my-registry.pp.ua:8483/jenkins:v5
     restart: unless-stopped
     ports:
       - ${HOST_WWW}:8080

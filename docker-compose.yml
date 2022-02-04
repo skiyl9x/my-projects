@@ -1,0 +1,11 @@
+version: '2.0'
+services:
+
+  ui:
+    image: joxit/docker-registry-ui:latest
+    ports:
+      - 7777:80
+    environment:
+      - REGISTRY_TITLE=My Private Docker Registry
+      - REGISTRY_URL=http://my-registry.pp.ua:50a00
+      - SINGLE_REGISTRY=true
